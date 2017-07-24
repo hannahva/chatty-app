@@ -12,7 +12,6 @@ class App extends Component {
         <Message></Message>
         <ChatBar></ChatBar>
       </div>
-
     );
   }
 }
