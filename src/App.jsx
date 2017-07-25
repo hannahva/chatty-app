@@ -11,10 +11,11 @@ class App extends Component {
     this.state = {
       currentUser: { name : "Bob"},
       messages: [
-        { username : "bob",
+        { id: 1,
+          username : "bob",
           content: "Has anyone seen my marbles?",
         },
-        {
+        { id: 2,
           username: "Anonymous",
           content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
         }
@@ -22,12 +23,23 @@ class App extends Component {
     };
   }
 
+  addNewMessage(text) {
+    const newMessage = {
+      id: Math.random(),
+      username: this.state.currentUser.name,
+      content: text
+    };
+    const messages = this.state.messages.concat(newMessage);
+    this.setState({messages: messages});
+  }
+
+
   render() {
     return (
       <div>
         <NavBar />
-        <MessageList></MessageList>
-        <ChatBar currentUser = { this.state.currentUser } />
+        <MessageList messages= { this.state.messages }></MessageList>
+        <ChatBar currentUser = { this.state.currentUser } addMessage={ this.addNewMessage.bind(this)}/>
       </div>
     );
   }
