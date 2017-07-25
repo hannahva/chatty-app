@@ -1,16 +1,33 @@
 import React, {Component} from 'react';
 import NavBar from './NavBar.jsx';
 import ChatBar from './ChatBar.jsx';
-import Message from './Message.jsx';
+import MessageList from './MessageList.jsx';
+
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: { name : "Bob"},
+      messages: [
+        { username : "bob",
+          content: "Has anyone seen my marbles?",
+        },
+        {
+          username: "Anonymous",
+          content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
+        }
+      ]
+    };
+  }
+
   render() {
     return (
       <div>
-        <NavBar></NavBar>
-        <Message></Message>
-        <ChatBar></ChatBar>
+        <NavBar />
+        <MessageList></MessageList>
+        <ChatBar currentUser = { this.state.currentUser } />
       </div>
     );
   }
