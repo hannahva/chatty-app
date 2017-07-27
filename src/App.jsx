@@ -74,10 +74,9 @@ class App extends Component {
         <NavBar clients={ this.state.clientSize }/>
         <MessageList messages= { this.state.messages }></MessageList>
         <ChatBar
-        currentUser = { this.state.currentUser.name }
-        setNewUser={this.addNewUser.bind(this)}
-        addMessage={ this.handleNewMessage.bind(this)}>
-        </ChatBar>
+          currentUser = { this.state.currentUser.name }
+          setNewUser={this.addNewUser.bind(this)}
+          addMessage={ this.handleNewMessage.bind(this)}/>
       </div>
     );
   }
