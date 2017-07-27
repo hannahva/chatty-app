@@ -9,37 +9,52 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: { name : "Bob"},
-      messages: [
-        { id: 1,
-          username : "bob",
-          content: "Has anyone seen my marbles?",
-        },
-        { id: 2,
-          username: "Anonymous",
-          content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-        }
-      ]
+      currentUser: { name: "Anonymous"},
+      messages: []
     };
+
   }
 
-  addNewMessage(text) {
-    const newMessage = {
-      id: Math.random(),
-      username: this.state.currentUser.name,
-      content: text
+  addNewMessage(text, type) {
+    if(type === "user message") {
+      const newUserMessage = {
+        username: this.state.currentUser.name,
+        content: text,
+        type: type
+      }
+      this.socket.send(JSON.stringify(newUserMessage))
+    } else {
+      const newSystemMessage = {
+        content: text,
+        type: type
+      }
+      this.socket.send(JSON.stringify(newSystemMessage))
     };
-    const messages = this.state.messages.concat(newMessage);
-    this.setState({messages: messages});
+  };
+
+  addNewUser(username){
+    this.setState({ currentUser: { name: username }})
   }
 
+  componentDidMount(){
+    this.socket = new WebSocket ("ws://localhost:3001");
+    this.socket.onopen = ((event) => {
+      console.log("connected to server", event);
+      // this.socket.send("hello");
+    });
+    this.socket.onmessage = (event) => {
+      console.log(event.data)
+      const messages = this.state.messages.concat(JSON.parse(event.data));
+      this.setState({ messages: messages})
+    }
+  }
 
   render() {
     return (
       <div>
         <NavBar />
         <MessageList messages= { this.state.messages }></MessageList>
-        <ChatBar currentUser = { this.state.currentUser } addMessage={ this.addNewMessage.bind(this)}/>
+        <ChatBar currentUser = { this.state.currentUser.name } setNewUser={this.addNewUser.bind(this)} addMessage={ this.addNewMessage.bind(this)}/>
       </div>
     );
   }
