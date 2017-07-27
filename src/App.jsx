@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   addNewMessage(text, type) {
-    if(type === "user message") {
+    if(type === "postMessage") {
       const newUserMessage = {
         username: this.state.currentUser.name,
         content: text,
@@ -43,7 +43,6 @@ class App extends Component {
       // this.socket.send("hello");
     });
     this.socket.onmessage = (event) => {
-      console.log(event.data)
       const messages = this.state.messages.concat(JSON.parse(event.data));
       this.setState({ messages: messages})
     }
