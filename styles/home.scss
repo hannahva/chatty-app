@@ -21,9 +21,8 @@ body {
   position: fixed;
   right: 0;
   top: 0;
-}
 
-.navbar-brand {
+  .navbar-brand {
   color: inherit;
   display: block;
   float: left;
@@ -33,7 +32,16 @@ body {
   line-height: 60px;
   padding: 0 10px;
   text-decoration: none;
+  }
+
+  .client-count {
+    float:right;
+    font-size: 20px;
+    line-height: 60px;
+    padding-right: 10px;
+  }
 }
+
 
 .chatbar {
   background: tomato;
