@@ -1,23 +1,36 @@
 Chatty App
 =====================
 
-A simple Slack clone, using React and Webpack for the client-side, and WebSockets for the [server](https://github.com/hannahva/chatty-app-server). Made during week 5 of Lighthouse Labs' web development bootcamp, using this [React boilerplate](https://github.com/lighthouse-labs/react-simple-boilerplate).
+A simple Slack clone made during week 5 of Lighthouse Labs' web development bootcamp, using this [ReactJS boilerplate](https://github.com/lighthouse-labs/react-simple-boilerplate).
 
 ### Description
 
-Real-time messaging app
+Real-time messaging app using ReactJS and Webpack for the client-side, and WebSockets for the [server](https://github.com/hannahva/chatty-app-server).
 
 ### Screenshots
 
-### Dependencies
+![two users start a chat](https://github.com/hannahva/chatty-app/blob/master/docs/2%20users%20start.png?raw=true)
+![both users update their usernames](https://github.com/hannahva/chatty-app/blob/master/docs/2%20users%20namechange.png?raw=true)
+![number of users updates when a client connection closes](https://github.com/hannahva/chatty-app/blob/master/docs/number%20of%20users%20change.png?raw=true)
 
-Install the dependencies and start the server.
+### Getting Started
+
+Install dependencies and start the WebPack server listening on port 3000 to compile React:
 
 ```
 npm install
 npm start
-open <http://localhost:3000>
 ```
+This app also requires running the WebSockets server found [here](https://github.com/hannahva/chatty-app-server). Download into a separate folder,
+```
+npm install
+npm start
+```
+to get the server listening on port 3001.
+
+now open <http://localhost:3000> and have that good chat you've been meaning to have with yourself.
+
+### Dependencies
 
 * React
 * Webpack
